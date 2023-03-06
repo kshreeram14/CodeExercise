@@ -1,0 +1,58 @@
+CREATE TABLE REQUEST_RESPONSE_CONFIG (
+    REQ_ID int NOT null AUTO_INCREMENT,
+    REQ_CHANNEL varchar(50),
+    REQ_CLIENT varchar(50),
+    REQ_OPERATION varchar(50),
+    RES_URL varchar(200),
+    RES_PARENT_NODE varchar(50),
+    RES_PROTOCOL varchar(50),
+    PRIMARY KEY (REQ_ID)
+);
+
+
+CREATE TABLE JSON_CONFIG (
+    JSON_ID int NOT NULL AUTO_INCREMENT,
+    PARENT_NODE varchar(100),
+    ELEMENT_NAME varchar(100),
+    ELEMENT_DATA_TYPE varchar(100),
+	ELEMENT_VALUE varchar(100),
+    JSON_REQ_ID int NOT NULL,
+	PRIMARY KEY (JSON_ID)
+);
+
+
+ALTER TABLE JSON_CONFIG
+ADD CONSTRAINT FK_JSON_CONFIG
+FOREIGN KEY (JSON_REQ_ID) REFERENCES REQUEST_RESPONSE_CONFIG(REQ_ID);
+
+
+---------------------------------------------------------------------------
+Json Data Mapper Config Portal (UI)
+Login 
+1) Create Request Operation (Screen 1)
+    REQ_CLIENT 
+    Channel varchar(50),
+    REQ_OPERATION
+    RES_URL varchar(200),
+    RES_PARENT_NODE varchar(50),
+    RES_PROTOCOL varchar(50),
+
+2) Build 3rd Request (Sreen 2)
+--> Drop down -- REQ_CLIENT , REQ_CHANNEL --, REQ_OPERATION
+
+Json Path req
+Response_1(Request_2)  Reqeust_1 (Request 3rd)
+
+Node                 Parent_node      Data_type           request_mapping     default_Value Validation 
+element_Object        root
+  element_1             element_Object      String   
+  element_2             element_Object      String 
+
+
+
+
+
+Backend :Process
+---------------------------------------------------------------------------
+
+
